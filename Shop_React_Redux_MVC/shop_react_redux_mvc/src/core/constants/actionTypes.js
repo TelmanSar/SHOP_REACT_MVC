@@ -1,11 +1,13 @@
-export const AUTH_TYPES = {
+export const LOG_IN_TYPES = {
     //login
     CNTRL_LOG_IN: 'CNTRL_LOG_IN',
     RX_LOG_IN: 'RX_LOG_IN',
     RX_LOG_IN_PENDING: 'RX_LOG_IN_PENDING',
     RX_LOG_IN_DONE: 'RX_LOG_IN_DONE',
+};
 
-    //register
+export const SIGN_UP_TYPES = {
+    //Sign up
     CNTRL_SIGN_UP: 'CNTRL_SIGN_UP',
     RX_SIGN_UP: 'RX_SIGN_UP',
     RX_SIGN_UP_PENDING: 'RX_SIGN_UP_PENDING',

@@ -8,9 +8,9 @@ import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-
+import {cntrlLogin} from '../../../state-management/actions/authUserActions'
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -32,29 +32,30 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export default function Login() {
-    const classes = useStyles()
+function Login(props) {
+    const classes = useStyles();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
+    const {login} = props;
 
-
-
-    const handleSubmit = () => {
-
-    }
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        login(username, password);
+    };
 
     return (
         <Container component="main" maxWidth="xs">
-            <CssBaseline />
+            <CssBaseline/>
             <div className={classes.paper}>
                 <Avatar className={classes.avatar}>
-                    <LockOutlinedIcon />
+                    <LockOutlinedIcon/>
                 </Avatar>
                 <Typography component="h1" variant="h5">
                     Log in
                 </Typography>
-                <form className={classes.form}  noValidate>
+                <form className={classes.form} onSubmit={handleSubmit} noValidate>
                     <TextField
                         value={username}
                         onChange={e => setUsername(e.target.value)}
@@ -101,12 +102,7 @@ export default function Login() {
 }
 
 const mapDispatchToProps = dispatch => ({
-login: (userName, password) => dispatch(cntrlLogin(userName, password))
-})
+    login: (userName, password) => dispatch(cntrlLogin(userName, password))
+});
 
 export default connect(null, mapDispatchToProps)(Login)
-
-
-
-
-

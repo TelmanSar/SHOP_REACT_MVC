@@ -1,9 +1,12 @@
-import * as TYPES from '../core/constants/actionTypes'
+import * as controllers from './controllerFactory';
+import * as TYPES from '../core/constants/actionTypes';
 
 const configs = {
-    //auth
-    [TYPES.AUTH_TYPES.CNTRL_LOG_IN]: controllers.tokenController.login.bind(controllers.tokenController),
-    [TYPES.AUTH_TYPES.CNTRL_SIGN_UP]:'',
+    //login
+    [TYPES.LOG_IN_TYPES.CNTRL_LOG_IN]: controllers.authUserController.login.bind(controllers.authUserController),
+
+    //sign up
+    [TYPES.SIGN_UP_TYPES.CNTRL_SIGN_UP]:'',
 
     //products
     [TYPES.PRODUCT_TYPES.CNTRL_GET_PRODUCTS]: '',
