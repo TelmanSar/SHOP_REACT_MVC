@@ -10,7 +10,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import {cntrlLogin} from '../../../state-management/actions/authUserActions'
+import {cntrlLogin} from '../../../state-management/actions/userActions'
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -32,12 +32,11 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-function Login(props) {
+function Login({login , ...props}) {
     const classes = useStyles();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    const {login} = props;
 
     const handleSubmit = (e) => {
         e.preventDefault();

@@ -1,4 +1,4 @@
-import usersApiHandler from "./Users/UsersApiHandler";
+import usersApiHandler from "./Users/UserApiHandler";
 
 export {
     usersApiHandler

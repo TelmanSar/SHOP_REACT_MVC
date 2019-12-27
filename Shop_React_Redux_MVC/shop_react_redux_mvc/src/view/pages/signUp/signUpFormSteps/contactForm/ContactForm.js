@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 
-export default function AccountForm({fields, handleFieldChanges}) {
+export default function ContactForm({fields, handleFieldChanges}) {
 
     function handleChange(e) {
         handleFieldChanges({...fields, [e.target.name]:  e.target.value})
@@ -19,10 +19,10 @@ export default function AccountForm({fields, handleFieldChanges}) {
                     <TextField
                         required
                         onChange={(e)=>handleChange(e)}
-                        value={fields.firstName}
-                        id="firstName"
-                        name="firstName"
-                        label="First name"
+                        value={fields.phone}
+                        id="phone"
+                        name="phone"
+                        label="Phone Number"
                         fullWidth
                     />
                 </Grid>
@@ -30,10 +30,10 @@ export default function AccountForm({fields, handleFieldChanges}) {
                     <TextField
                         required
                         onChange={(e)=>handleChange(e)}
-                        value={fields.lastName}
-                        id="lastName"
-                        name="lastName"
-                        label="Last name"
+                        value={fields.address}
+                        id="address"
+                        name="address"
+                        label="Address"
                         fullWidth
                     />
                 </Grid>
@@ -41,10 +41,22 @@ export default function AccountForm({fields, handleFieldChanges}) {
                     <TextField
                         required
                         onChange={(e)=>handleChange(e)}
-                        value={fields.username}
-                        id="username"
-                        name="username"
-                        label="Username"
+                        value={fields.postalCode}
+                        id="postalCode"
+                        name="postalCode"
+                        label="Postal Code"
+                        fullWidth
+
+                    />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                    <TextField
+                        required
+                        onChange={(e)=>handleChange(e)}
+                        value={fields.city}
+                        id="city"
+                        name="city"
+                        label="City"
                         fullWidth
                     />
                 </Grid>
@@ -52,34 +64,22 @@ export default function AccountForm({fields, handleFieldChanges}) {
                     <TextField
                         required
                         onChange={(e)=>handleChange(e)}
-                        value={fields.email}
-                        id="email"
-                        name="email"
-                        label="Email"
+                        value={fields.state}
+                        id="state"
+                        name="state"
+                        label="State"
                         fullWidth
+
                     />
                 </Grid>
                 <Grid item xs={12} sm={6}>
                     <TextField
                         required
                         onChange={(e)=>handleChange(e)}
-                        value={fields.password}
-                        id="password"
-                        type="password"
-                        name="password"
-                        label="Password"
-                        fullWidth
-                    />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                    <TextField
-                        required
-                        onChange={(e)=>handleChange(e)}
-                        value={fields.rePassword}
-                        id="rePassword"
-                        type="password"
-                        name="rePassword"
-                        label="Repeat password"
+                        value={fields.country}
+                        id="country"
+                        name="country"
+                        label="Country"
                         fullWidth
                     />
                 </Grid>

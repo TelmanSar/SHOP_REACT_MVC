@@ -1,9 +1,9 @@
-import Operations from '../../../core/constants/AppOperation';
+import Operations from '../../../core/classes/AppOperation';
 import ApiHandler from "../../../core/classes/ApiHandler";
 import LocalStorageHelper from '../../../core/helpers/LocalStorageHelper';
 import { ACCESS } from '../../../core/constants/util';
 
-class AuthUserOperation extends Operations {
+class UserOperation extends Operations {
     constructor(usersApiHandler){
         super();
         this.usersApiHandler = usersApiHandler
@@ -16,12 +16,19 @@ class AuthUserOperation extends Operations {
          LocalStorageHelper.setItem(ACCESS, token)
     };
 
-    async login(payload) {
+    login = async (payload) => {
         const response = await this.usersApiHandler.login(payload);
         this._tokenAccessConfig (response.result.token);
         // todo  return responseErrorCheck(response)
         return response.result
+    };
+
+    signUp = async (payload) => {
+        const response = await this.usersApiHandler.signUp(payload);
+        // todo  return responseErrorCheck(response)
+        return response.result
     }
+
 }
 
-export default AuthUserOperation;
+export default UserOperation;

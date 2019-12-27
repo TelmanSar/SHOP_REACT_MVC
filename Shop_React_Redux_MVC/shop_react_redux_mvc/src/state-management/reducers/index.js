@@ -1,3 +1,9 @@
-import {authUserReducer}from './authUserReducer'
+import {
+    userReducer,
+    registrationMessage
+} from './userReducer'
 
-export {authUserReducer};
+export {
+    userReducer,
+    registrationMessage
+};

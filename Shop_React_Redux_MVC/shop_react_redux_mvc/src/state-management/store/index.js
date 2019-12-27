@@ -1,10 +1,11 @@
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import { controllerMiddleware } from '../middlewares';
-import configs  from '../../configs/config';
+import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
+import {controllerMiddleware} from '../middlewares';
+import configs from '../../configs/config';
 import * as reducers from '../reducers';
 
 const rootReducers = combineReducers({
-   authUser: reducers.authUserReducer
+    authUser: reducers.userReducer,
+    registrationMessage: reducers.registrationMessage
 });
 
 const composeEnhancers =

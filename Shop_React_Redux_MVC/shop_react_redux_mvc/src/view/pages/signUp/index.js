@@ -1,23 +1,23 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import useStyles from './styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import AccountForm from "../../components/signUpFormSteps/accountForm/AccountForm";
-import ContactForm from "../../components/signUpFormSteps/contactForm/ContactForm";
-import ReviewForm from "../../components/signUpFormSteps/reviewForm/ReviewForm";
+import AccountForm from "./signUpFormSteps/accountForm/AccountForm";
+import ContactForm from "./signUpFormSteps/contactForm/ContactForm";
+import ReviewForm from "./signUpFormSteps/reviewForm/ReviewForm";
 import Avatar from "@material-ui/core/Avatar";
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import {connect} from 'react-redux';
+import {cntrlSignUp} from '../../../state-management/actions/userActions'
 
-function getSteps() {
-    return ['Personal info', 'Contact info', 'Review'];
-}
 
-function MultiStepSignUp() {
+function MultiStepSignUp({signUp}) {
     const classes = useStyles();
     const [activeStep, setActiveStep] = React.useState(0);
+    const [isFieldError, setFieldError] = React.useState(true);
 
     const [stepOneFields, setStepOneFields] = React.useState({
         firstName: '',
@@ -36,6 +36,46 @@ function MultiStepSignUp() {
         country: '',
     });
 
+    const fields = {...stepOneFields, ...stepTwoFields};
+
+    useEffect( () => {
+            if(fields.password.length > 0 && fields.password === fields.rePassword) {
+                setFieldError(false);
+            } else {
+                setFieldError(true)
+            }
+        }, [stepOneFields.password, stepOneFields.rePassword]
+    );
+
+    const checkForNextStep = (step) => {
+        console.log("1");
+        if(isFieldError) return true;
+        console.log("2");
+        if(step === activeStep){
+           switch (step) {
+               case 0:
+                   console.log("step1", !!Object.values(stepOneFields).some(value => value.length === 0));
+                   return !!Object.values(stepOneFields).some(value => value.length === 0);
+               case 1:
+                   return !!Object.values(stepTwoFields).some(value => value.length === 0);
+               case 2:
+                   return false;
+           }
+        }
+        return true
+    };
+
+    function handleSignUp(){
+        const signIpFields = {
+            ...stepTwoFields,
+            firstName: stepOneFields.firstName,
+            lastName: stepOneFields.lastName,
+            username: stepOneFields.username,
+            password: stepOneFields.password,
+        };
+        signUp(signIpFields)
+    }
+
     function getStepContent(stepIndex) {
         switch (stepIndex) {
             case 0:
@@ -43,13 +83,11 @@ function MultiStepSignUp() {
             case 1:
                 return <ContactForm fields={stepTwoFields} handleFieldChanges={setStepTwoFields}/>;
             case 2:
-                return <ReviewForm fields={{...setStepOneFields, ...setStepTwoFields}}/>;
-            default:
-                return 'Unknown stepIndex';
+                return <ReviewForm fields={fields}/>;
         }
     }
 
-    const steps = getSteps();
+    const steps = ['Personal info', 'Contact info', 'Review'];
 
     const handleNext = () => {
         setActiveStep(prevActiveStep => prevActiveStep + 1);
@@ -58,10 +96,10 @@ function MultiStepSignUp() {
     const handleBack = () => {
         setActiveStep(prevActiveStep => prevActiveStep - 1);
     };
-
-    const handleReset = () => {
-        setActiveStep(0);
-    };
+    //
+    // const handleReset = () => {
+    //     setActiveStep(0);
+    // };
 
     return (
         <div className={classes.root}>
@@ -81,12 +119,12 @@ function MultiStepSignUp() {
                 ))}
             </Stepper>
             <div className={classes.form}>
-                {activeStep === steps.length ? (
-                    <div>
-                        <Typography>All steps completed</Typography>
-                        <Button onClick={handleReset}>Reset</Button>
-                    </div>
-                ) : (
+                {/*{activeStep === steps.length ? (*/}
+                {/*    <div>*/}
+                {/*        <Typography>All steps completed</Typography>*/}
+                {/*        <Button onClick={handleReset}>Reset</Button>*/}
+                {/*    </div>*/}
+                {/*) : (*/}
                     <div>
                         <>
                             {getStepContent(activeStep)}
@@ -101,36 +139,25 @@ function MultiStepSignUp() {
                                 <Button
                                     variant="contained"
                                     color="primary"
-                                    onClick={handleNext}
+                                    onClick={activeStep === steps.length - 1 ? handleSignUp : handleNext}
                                     className={classes.button}
-                                    disabled={
-                                        (activeStep === 0 && Object.values(stepOneFields).some(input => input.length === 0)) || (activeStep === 1 && Object.values(stepOneFields).some(input => input.length === 0))
-                                    }
+                                    disabled={(checkForNextStep(activeStep))}
                                 >
-                                    {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+                                    {activeStep === steps.length - 1 ? 'Register' : 'Next'}
                                 </Button>
                             </div>
                         </>
                     </div>
-                )}
+                {/*)}*/}
             </div>
         </div>
     );
 }
 
-export default MultiStepSignUp;
+const mapDispatchToProps = dispatch => ({
+    signUp: signUpFields => dispatch(cntrlSignUp(signUpFields))
+});
 
-//Object.values(stepOneFields).every(input => input.length < 0 )
 
-// const [firstName, setFirstName] = React.useState('');
-// const [lastName, setLastName] = React.useState('');
-// const [username, setUsername] = React.useState('');
-// const [email, setEmail] = React.useState('');
-// const [password, setPassword] = React.useState('');
-// const [rePassword, setRePassword] = React.useState('');
-// const [phone, setPhone] = React.useState('');
-// const [address, setAddress] = React.useState('');
-// const [postalCode, setPostalCode] = React.useState('');
-// const [city, setCity] = React.useState('');
-// const [state, setState] = React.useState('');
-// const [country, setCountry] = React.useState('');
+export default connect(null, mapDispatchToProps)(MultiStepSignUp)
+// export default MultiStepSignUp;

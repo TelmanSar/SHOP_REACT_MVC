@@ -1,5 +1,5 @@
-import AuthUserOperation from "./authUser/AuthUserOperation";
+import UserOperation from "./user/UserOperation";
 
 export {
-    AuthUserOperation,
+    UserOperation,
 }

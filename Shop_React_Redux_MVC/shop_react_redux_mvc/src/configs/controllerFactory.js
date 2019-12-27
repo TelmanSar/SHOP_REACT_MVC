@@ -3,11 +3,11 @@ import * as Operations from '../services/operations';
 import * as ApiHandlers from '../services/api';
 
 //operations
-const authUserOperations = new Operations.AuthUserOperation(ApiHandlers.usersApiHandler);
+const userOperations = new Operations.UserOperation(ApiHandlers.usersApiHandler);
 
 //controllers
-const authUserController = new Controllers.AuthUserController(authUserOperations);
+const userController = new Controllers.UserController(userOperations);
 
 export {
-    authUserController
+    userController
 }
