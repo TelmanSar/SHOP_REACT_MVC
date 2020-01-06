@@ -7,10 +7,11 @@ import store from './state-management/store';
 import { Provider } from 'react-redux';
 import Login from './view/pages/login'
 import MultiStepSignUp from "./view/pages/signUp";
+import Dashboard from './view/pages/dashBoard'
 
 ReactDOM.render(
     <Provider store={store}>
-        <MultiStepSignUp />
+        <Dashboard />
     </Provider>
     , document.getElementById('root'));
 

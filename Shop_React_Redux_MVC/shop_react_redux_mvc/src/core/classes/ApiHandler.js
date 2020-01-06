@@ -34,6 +34,15 @@ class ApiHandler {
         }).then(res => this._errorAndSuccessFilter(res));
     }
 
+    get(url = '', options) {
+        return fetch(url, {
+            method: API_METHODS.GET,
+            headers: this._createHeaders()
+        }).then(res => {
+            return this._errorAndSuccessFilter(res)
+        });
+    }
+
     _errorAndSuccessFilter(res) {
         if(res.ok) {
             return res.json()

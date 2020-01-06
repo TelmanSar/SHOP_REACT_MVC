@@ -8,14 +8,14 @@ const createAsyncReducer = (prefix, initialState) => (state = {isLoading: true, 
             return {
                 data: initialState,
                 isLoading: true,
-                error: null
+                // error: null
             };
         case `${prefix}_${DONE}`:
             return {
                 ...state,
                 data: action.payload || initialState,
                 isLoading: false,
-                error: null
+                // error: null
             };
         default:
             return state

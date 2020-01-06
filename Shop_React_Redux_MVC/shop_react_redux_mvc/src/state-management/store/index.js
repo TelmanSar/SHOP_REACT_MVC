@@ -5,7 +5,8 @@ import * as reducers from '../reducers';
 
 const rootReducers = combineReducers({
     authUser: reducers.userReducer,
-    registrationMessage: reducers.registrationMessage
+    registrationMessage: reducers.registrationMessage,
+    products: reducers.productsReducer,
 });
 
 const composeEnhancers =

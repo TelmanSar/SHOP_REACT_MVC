@@ -10,9 +10,15 @@ class OnlineShop extends ApiHandler {
         return response;
     };
 
-    post(endPoint, formData = {}, queryFields = '') {
+    post(endPoint, formData = {}) {
         return super.post(`${this.domain}/${this.prefix}/${endPoint ? endPoint + '/' : ''}`, formData).then(this._checkResponse.bind(this));
     }
+
+    get(endPoint) {
+        return super.get(`${this.domain}/${this.prefix}/${endPoint ? endPoint + '/' : ''}`).then(this._checkResponse.bind(this));
+    }
+
+    
 }
 
 

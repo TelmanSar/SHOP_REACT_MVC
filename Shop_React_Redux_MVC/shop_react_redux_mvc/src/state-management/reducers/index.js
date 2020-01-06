@@ -1,9 +1,8 @@
-import {
-    userReducer,
-    registrationMessage
-} from './userReducer'
+import {userReducer, registrationMessage} from './userReducer'
+import {productsReducer} from  './productsReducer'
 
 export {
     userReducer,
-    registrationMessage
+    registrationMessage,
+    productsReducer
 };

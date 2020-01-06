@@ -1,5 +1,7 @@
-import usersApiHandler from "./Users/UserApiHandler";
+import usersApiHandler from "./user/UserApiHandler";
+import productsApiHandler from "./products/ProductsApiHandler";
 
 export {
-    usersApiHandler
+    usersApiHandler,
+    productsApiHandler
 }

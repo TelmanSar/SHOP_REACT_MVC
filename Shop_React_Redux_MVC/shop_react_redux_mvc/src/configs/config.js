@@ -9,7 +9,7 @@ const configs = {
     [TYPES.SIGN_UP_TYPES.CNTRL_SIGN_UP]: controllers.userController.signUp,
 
     //products
-    [TYPES.PRODUCT_TYPES.CNTRL_GET_PRODUCTS]: '',
+    [TYPES.PRODUCT_TYPES.CNTRL_GET_PRODUCTS]: controllers.productsController.getProducts,
     [TYPES.PRODUCT_TYPES.CNTRL_GET_PRODUCT_BY_ID]:'',
 
     //orders
