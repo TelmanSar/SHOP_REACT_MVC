@@ -16,8 +16,8 @@ const configs = {
     [TYPES.ORDERS_TYPES.CNTRL_GET_ORDERS]:'',
 
     //categories
-    [TYPES.CATEGORIES_TYPES.CNTRL_GET_CATEGORIES]:'',
-    [TYPES.CATEGORIES_TYPES.CNTRL_GET_CATEGORY_BY_ID]:''
+    [TYPES.CATEGORIES_TYPES.CNTRL_GET_CATEGORIES]: controllers.categoriesController.getCategories,
+    [TYPES.CATEGORIES_TYPES.CNTRL_GET_PRODUCTS_BY_CATEGORY]:controllers.categoriesController.getProductsByCategory
 };
 
 export default configs;

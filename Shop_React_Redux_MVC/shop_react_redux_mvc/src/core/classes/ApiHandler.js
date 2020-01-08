@@ -5,7 +5,7 @@ import HEADERS from '../constants/headers';
 
 class ApiHandler {
 
-    static token = '';
+    static token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjEiLCJuYmYiOjE1Nzg0NjkxMzIsImV4cCI6MTU3OTA3MzkzMiwiaWF0IjoxNTc4NDY5MTMyfQ.XSqiFeyWIHv11_yuclFh02b7idPtyTC9fmL8dTsLmlE';
 
     constructor(domain, prefix) {
         this._domain = domain;

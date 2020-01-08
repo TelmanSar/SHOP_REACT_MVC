@@ -1,8 +1,12 @@
 import {userReducer, registrationMessage} from './userReducer'
-import {productsReducer} from  './productsReducer'
+import {productsReducer, cartProductsReducer} from  './productsReducer'
+import {categoriesReducer, productsByCategory} from "./categoriesReducer";
 
 export {
     userReducer,
     registrationMessage,
-    productsReducer
+    productsReducer,
+    categoriesReducer,
+    productsByCategory,
+    cartProductsReducer,
 };

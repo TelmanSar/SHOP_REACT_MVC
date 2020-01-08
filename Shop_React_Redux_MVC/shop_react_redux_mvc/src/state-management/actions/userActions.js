@@ -19,7 +19,7 @@ export const rxlLoginDone = payload => ({
     payload
 });
 
-//register
+//sign up
 export const cntrlSignUp = payload => ({
     type:SIGN_UP_TYPES.CNTRL_SIGN_UP,
     payload

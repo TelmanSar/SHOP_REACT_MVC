@@ -3,7 +3,6 @@ const HEADERS = {
   ContentType: 'Content-Type',
   Authorization: 'Authorization',
   ApplicationJson: 'application/json',
-  Urlencoded: 'application/x-www-form-urlencoded',
 };
 
 export default HEADERS;

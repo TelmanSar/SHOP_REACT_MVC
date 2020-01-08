@@ -7,6 +7,9 @@ const rootReducers = combineReducers({
     authUser: reducers.userReducer,
     registrationMessage: reducers.registrationMessage,
     products: reducers.productsReducer,
+    categories: reducers.categoriesReducer,
+    productsByCategory: reducers.productsByCategory,
+    cartProducts: reducers.cartProductsReducer,
 });
 
 const composeEnhancers =
