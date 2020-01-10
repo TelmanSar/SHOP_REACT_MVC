@@ -1,7 +1,7 @@
 import Operations from '../../../core/classes/AppOperation';
 import ApiHandler from "../../../core/classes/ApiHandler";
 import LocalStorageHelper from '../../../core/helpers/LocalStorageHelper';
-import { ACCESS } from '../../../core/constants/util';
+import { ACCESS, USER_CREDENTIALS } from '../../../core/constants/util';
 
 class UserOperation extends Operations {
     constructor(usersApiHandler){
@@ -12,14 +12,20 @@ class UserOperation extends Operations {
     _tokenAccessConfig = (token) => {
         ApiHandler.token = token;
          LocalStorageHelper.deleteItem(ACCESS);
-        //todo check expiration /response.expiresIn = (response.expiresIn - this.expiresInInsurance) * 1000 + Date.now();
          LocalStorageHelper.setItem(ACCESS, token)
+    };
+
+    _userCredentialsAccessConfig = (userCredentials) => {
+        LocalStorageHelper.deleteItem(USER_CREDENTIALS);
+        LocalStorageHelper.setItem(USER_CREDENTIALS, userCredentials)
     };
 
     login = async (payload) => {
         const response = await this.usersApiHandler.login(payload);
-        this._tokenAccessConfig (response.result.token);
         // todo  return responseErrorCheck(response)
+        this._tokenAccessConfig (response.result.token);
+        this._userCredentialsAccessConfig({ firstName: response.result.firstName, lastName: response.result.lastName});
+
         return response.result
     };
 

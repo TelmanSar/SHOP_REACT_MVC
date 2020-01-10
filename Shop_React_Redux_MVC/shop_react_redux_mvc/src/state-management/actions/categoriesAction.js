@@ -21,13 +21,3 @@ export const cntrlGetProductsByCategory = payload => ({
     type:CATEGORIES_TYPES.CNTRL_GET_PRODUCTS_BY_CATEGORY,
     payload
 });
-
-export const rxGetProductsByCategoryPending = payload => ({
-    type:CATEGORIES_TYPES.RX_GET_PRODUCTS_BY_CATEGORY_PENDING,
-    payload
-});
-
-export const rxGetProductsByCategoryDone = payload => ({
-    type:CATEGORIES_TYPES.RX_GET_PRODUCTS_BY_CATEGORY_DONE,
-    payload
-});

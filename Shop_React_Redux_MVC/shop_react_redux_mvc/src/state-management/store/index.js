@@ -8,8 +8,8 @@ const rootReducers = combineReducers({
     registrationMessage: reducers.registrationMessage,
     products: reducers.productsReducer,
     categories: reducers.categoriesReducer,
-    productsByCategory: reducers.productsByCategory,
     cartProducts: reducers.cartProductsReducer,
+    isOrderSuccessful: reducers.ordersReducer,
 });
 
 const composeEnhancers =

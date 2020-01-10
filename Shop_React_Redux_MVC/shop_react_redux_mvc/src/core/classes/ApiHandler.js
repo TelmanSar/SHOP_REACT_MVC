@@ -50,7 +50,7 @@ class ApiHandler {
             return {
                 status: 0,
                 responseStatus: res.status,
-                errorMessage: res.statusText,
+                errorMessage: res.errorMessage,
             }
         }
     }

@@ -14,6 +14,7 @@ const useStyles = makeStyles(theme => ({
     },
     avatarContainer: {
         display: 'flex',
+        flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
     },

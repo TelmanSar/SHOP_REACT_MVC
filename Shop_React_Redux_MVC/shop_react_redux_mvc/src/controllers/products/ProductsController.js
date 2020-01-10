@@ -17,7 +17,6 @@ class ProductsController extends Controller {
         }
     };
 
-
 }
 
 export default ProductsController;

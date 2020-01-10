@@ -1,7 +1,7 @@
 import OnlineShop from '../OnlineShop';
 
 const END_POINT = {
-    prefix: 'user',
+    prefix: 'Users',
     authenticate: 'authenticate',
     register: 'register',
 };

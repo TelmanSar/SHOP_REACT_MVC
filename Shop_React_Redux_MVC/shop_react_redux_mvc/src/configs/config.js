@@ -10,10 +10,9 @@ const configs = {
 
     //products
     [TYPES.PRODUCT_TYPES.CNTRL_GET_PRODUCTS]: controllers.productsController.getProducts,
-    [TYPES.PRODUCT_TYPES.CNTRL_GET_PRODUCT_BY_ID]:'',
 
     //orders
-    [TYPES.ORDERS_TYPES.CNTRL_GET_ORDERS]:'',
+    [TYPES.ORDERS_TYPES.CNTRL_MAKE_ORDERS]:controllers.ordersController.makeOrders,
 
     //categories
     [TYPES.CATEGORIES_TYPES.CNTRL_GET_CATEGORIES]: controllers.categoriesController.getCategories,

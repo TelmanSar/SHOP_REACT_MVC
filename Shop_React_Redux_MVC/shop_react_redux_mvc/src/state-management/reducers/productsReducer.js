@@ -15,11 +15,16 @@ export const cartProductsReducer = (state = {}, action) => {
             if (state[action.payload.id]) {
                 newQty = state[action.payload.id] - action.payload.qty;
             }
-            return {
+            const tempState = {
                 ...state,
-                [action.payload.id]: newQty <= 0 ? undefined : newQty,
-
+                [action.payload.id]: newQty
             };
+            for(let prop in tempState) {
+                if(tempState[prop] <= 0) {
+                    delete tempState[prop]
+                }
+            }
+            return tempState;
         default:
             return state;
     }

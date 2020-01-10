@@ -4,7 +4,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
+import {Link} from "react-router-dom";
 import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
@@ -41,8 +41,12 @@ function Login({login , ...props}) {
     const handleSubmit = (e) => {
         e.preventDefault();
         e.stopPropagation();
-        login(username, password);
+        login(username, password).then(()=> {
+            props.history.push('/home')
+        });
     };
+
+    console.log(props.user);
 
     return (
         <Container component="main" maxWidth="xs">
@@ -60,7 +64,6 @@ function Login({login , ...props}) {
                         onChange={e => setUsername(e.target.value)}
                         variant="outlined"
                         margin="normal"
-                        required
                         fullWidth
                         id="username"
                         label="Username"
@@ -71,7 +74,6 @@ function Login({login , ...props}) {
                         onChange={e => setPassword(e.target.value)}
                         variant="outlined"
                         margin="normal"
-                        required
                         fullWidth
                         name="password"
                         label="Password"
@@ -89,7 +91,7 @@ function Login({login , ...props}) {
                     </Button>
                     <Grid container>
                         <Grid item>
-                            <Link href="#" variant="body2">
+                            <Link to="./signup" variant="body2" >
                                 {"Don't have an account? Sign Up"}
                             </Link>
                         </Grid>
@@ -100,8 +102,15 @@ function Login({login , ...props}) {
     );
 }
 
+const authAccessor = state => state.authUser;
+
+
+const mapStateToProps = state => ({
+    user: authAccessor(state),
+});
+
 const mapDispatchToProps = dispatch => ({
     login: (userName, password) => dispatch(cntrlLogin(userName, password))
 });
 
-export default connect(null, mapDispatchToProps)(Login)
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

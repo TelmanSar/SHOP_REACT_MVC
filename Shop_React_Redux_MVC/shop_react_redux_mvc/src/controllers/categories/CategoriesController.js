@@ -1,5 +1,7 @@
 import Controller from '../../core/classes/AppController';
-import {rxGetCategoriesPending, rxGetCategoriesDone, rxGetProductsByCategoryPending,rxGetProductsByCategoryDone} from '../../state-management/actions/categoriesAction'
+import {rxGetCategoriesPending, rxGetCategoriesDone} from '../../state-management/actions/categoriesAction'
+import {rxGetProductsPending, rxGetProductsDone} from '../../state-management/actions/productsAction'
+
 
 class CategoriesController extends Controller {
     constructor(categoriesOperation) {
@@ -19,9 +21,9 @@ class CategoriesController extends Controller {
 
     getProductsByCategory = async (store, action) => {
         try {
-            store.dispatch(rxGetProductsByCategoryPending());
+            store.dispatch(rxGetProductsPending());
             const response = await this.categoriesOperation.getProductsByCategory(action.payload);
-            store.dispatch(rxGetProductsByCategoryDone(response));
+            store.dispatch(rxGetProductsDone(response));
         } catch (e) {
             return new Error(e)
         }

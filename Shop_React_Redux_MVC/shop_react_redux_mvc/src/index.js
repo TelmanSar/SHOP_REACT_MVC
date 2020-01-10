@@ -5,13 +5,10 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import store from './state-management/store';
 import { Provider } from 'react-redux';
-import Login from './view/pages/login'
-import MultiStepSignUp from "./view/pages/signUp";
-import Dashboard from './view/pages/dashBoard'
 
 ReactDOM.render(
     <Provider store={store}>
-        <Dashboard />
+        <App/>
     </Provider>
     , document.getElementById('root'));
 

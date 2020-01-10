@@ -12,9 +12,10 @@ import Avatar from "@material-ui/core/Avatar";
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import {connect} from 'react-redux';
 import {cntrlSignUp} from '../../../state-management/actions/userActions'
+import {Link} from "react-router-dom";
 
 
-function MultiStepSignUp({signUp}) {
+function SignUp({signUp, history}) {
     const classes = useStyles();
     const [activeStep, setActiveStep] = React.useState(0);
     const [isFieldError, setFieldError] = React.useState(true);
@@ -48,13 +49,10 @@ function MultiStepSignUp({signUp}) {
     );
 
     const checkForNextStep = (step) => {
-        console.log("1");
         if(isFieldError) return true;
-        console.log("2");
         if(step === activeStep){
            switch (step) {
                case 0:
-                   console.log("step1", !!Object.values(stepOneFields).some(value => value.length === 0));
                    return !!Object.values(stepOneFields).some(value => value.length === 0);
                case 1:
                    return !!Object.values(stepTwoFields).some(value => value.length === 0);
@@ -73,7 +71,9 @@ function MultiStepSignUp({signUp}) {
             username: stepOneFields.username,
             password: stepOneFields.password,
         };
-        signUp(signIpFields)
+        signUp(signIpFields).then(()=> {
+            history.push('/')
+        })
     }
 
     function getStepContent(stepIndex) {
@@ -96,10 +96,6 @@ function MultiStepSignUp({signUp}) {
     const handleBack = () => {
         setActiveStep(prevActiveStep => prevActiveStep - 1);
     };
-    //
-    // const handleReset = () => {
-    //     setActiveStep(0);
-    // };
 
     return (
         <div className={classes.root}>
@@ -110,6 +106,9 @@ function MultiStepSignUp({signUp}) {
                 <Typography component="h1" variant="h5">
                     Sign up
                 </Typography>
+                <Button component={Link} to="/" variant="body2" >
+                    {"Back to Login page"}
+                </Button>
             </div>
             <Stepper activeStep={activeStep} className={classes.stepper}>
                 {steps.map(label => (
@@ -119,12 +118,6 @@ function MultiStepSignUp({signUp}) {
                 ))}
             </Stepper>
             <div className={classes.form}>
-                {/*{activeStep === steps.length ? (*/}
-                {/*    <div>*/}
-                {/*        <Typography>All steps completed</Typography>*/}
-                {/*        <Button onClick={handleReset}>Reset</Button>*/}
-                {/*    </div>*/}
-                {/*) : (*/}
                     <div>
                         <>
                             {getStepContent(activeStep)}
@@ -148,7 +141,6 @@ function MultiStepSignUp({signUp}) {
                             </div>
                         </>
                     </div>
-                {/*)}*/}
             </div>
         </div>
     );
@@ -159,5 +151,4 @@ const mapDispatchToProps = dispatch => ({
 });
 
 
-export default connect(null, mapDispatchToProps)(MultiStepSignUp)
-// export default MultiStepSignUp;
+export default connect(null, mapDispatchToProps)(SignUp)
